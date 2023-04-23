@@ -1,0 +1,12 @@
+<h1 id="outing-name"><%= @outing.name %></h1>
+
+<body>
+  <section id="outing-info">
+    <ul>
+      <li>Location: <%= @outing.location %></li>
+      <li>Date: <%= @outing.date.strftime("%D") %></li>
+      <li>Contestants: <%= @outing.number_of_contestants %></li>
+      <li>Names of Contestants: <%= @outing.find_contestants %>
+    </ul>
+  </section>
+</body>
