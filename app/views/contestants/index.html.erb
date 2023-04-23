@@ -1,6 +1,11 @@
 <h1 id="contestant-header"><%= @bachelorette.name %>'s Contestants</h1>
 
 <body>
+  <section id="unique-hometowns">
+    <h3>Starring contestants from:</h3>
+    <%= @contestants.distinct_hometowns %>
+  </section>
+  
   <section id="contestant-list">
     <% @contestants.each do |contestant| %>
         <h3 id="contestant-#{contestant.id}"><%=link_to "#{contestant.name}", contestant_path(contestant) %></h3>
