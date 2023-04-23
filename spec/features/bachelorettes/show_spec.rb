@@ -2,20 +2,21 @@ require 'rails_helper'
 
 RSpec.describe "Bachelorette Show Page", type: :feature do
   before(:all) do
-    @bachelorette = Bachelorette.create!(name: "Hannah Brown", season_number: 15)
-    @bachelorette_2 = Bachelorette.create!(name: "Katie Thurston", season_number: 17)
+    @bachelorette = Bachelorette.create!(name: "Hannah Brown", season_number: 15, description: "This one time, at band camp...")
+    @bachelorette_2 = Bachelorette.create!(name: "Katie Thurston", season_number: 17, description: "She chose WHO?!")
   end
 
   describe 'User Story 1' do
     it 'can see bachelorette name, season number, and description' do
       visit "/bachelorettes/#{@bachelorette.id}"
-
+      
       within "#bachelorette-name" do
         expect(page).to have_content(@bachelorette.name)        
       end
 
       within "#bachelorette-info" do
         expect(page).to have_content(@bachelorette.season_number)
+        expect(page).to have_content(@bachelorette.description)
       end
     end
 
