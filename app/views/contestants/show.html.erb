@@ -9,6 +9,8 @@
     <h2>Outings</h2>
     <ul>
       <% @contestant.outings.each do |outing| %>
-        <li><%= outing.name %></li>
+        <li><%= link_to "#{outing.name}", outing_path(outing) %></li>
       <% end %>
     </ul>
+  </section>
+</body>
