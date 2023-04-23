@@ -3,7 +3,7 @@
 <body>
   <section id="contestant-list">
     <% @contestants.each do |contestant| %>
-        <h3 id="contestant-#{contestant.id}"><%= contestant.name %></h3>
+        <h3 id="contestant-#{contestant.id}"><%=link_to "#{contestant.name}", contestant_path(contestant) %></h3>
         <p >Age: <%= contestant.age %></p>
         <p>Hometown: <%= contestant.hometown %></p>
     <% end %>

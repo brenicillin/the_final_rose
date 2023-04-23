@@ -1,0 +1,14 @@
+<h1 id="contestant-name"><%= @contestant.name %></h1>
+
+<body>
+  <section id="contestant-season">
+    <h2>Season: <%= @contestant.find_season %> - <%= @contestant.season_description %></h2>
+  </section>
+
+  <section id="contestant-outings">
+    <h2>Outings</h2>
+    <ul>
+      <% @contestant.outings.each do |outing| %>
+        <li><%= outing.name %></li>
+      <% end %>
+    </ul>
