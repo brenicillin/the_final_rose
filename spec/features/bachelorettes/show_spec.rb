@@ -2,36 +2,43 @@ require 'rails_helper'
 
 RSpec.describe "Bachelorette Show Page", type: :feature do
   before(:all) do
-    @bachelorette = Bachelorette.create!(name: "Hannah Brown", season_number: 15, description: "This one time, at band camp...")
-    @bachelorette_2 = Bachelorette.create!(name: "Katie Thurston", season_number: 17, description: "She chose WHO?!")
+    test_data
   end
 
   describe 'User Story 1' do
     it 'can see bachelorette name, season number, and description' do
-      visit "/bachelorettes/#{@bachelorette.id}"
+      visit "/bachelorettes/#{@bachelorette_1.id}"
       
       within "#bachelorette-name" do
-        expect(page).to have_content(@bachelorette.name)        
+        expect(page).to have_content(@bachelorette_1.name)        
       end
 
       within "#bachelorette-info" do
-        expect(page).to have_content(@bachelorette.season_number)
-        expect(page).to have_content(@bachelorette.description)
+        expect(page).to have_content(@bachelorette_1.season_number)
+        expect(page).to have_content(@bachelorette_1.description)
       end
     end
 
     it 'shows a link to see the bachelorettes contestants' do
-      @contestant = @bachelorette.contestants.create!(name: "John Paul Jones", age: 25, hometown: "New York City")
-      @contestant_2 = @bachelorette_2.contestants.create!(name: "Tyler Cameron", age: 27, hometown: "Jupiter, Florida")
 
-      visit "/bachelorettes/#{@bachelorette.id}"
+      visit "/bachelorettes/#{@bachelorette_1.id}"
       
       within"#bachelor-link" do
         expect(page).to have_link("Meet the Bachelors!")
         click_link("Meet the Bachelors!")
       end
 
-      expect(current_path).to eq("/bachelorettes/#{@bachelorette.id}/contestants")
+      expect(current_path).to eq("/bachelorettes/#{@bachelorette_1.id}/contestants")
+    end
+  end
+
+  describe "User Story 5" do
+    it "can see the average age of all of the bachelorette's contestants" do
+      visit bachelorette_path(@bachelorette_1)
+      
+      within "#bachelorette-info" do
+        expect(page).to have_content("Average Contestant Age: 26")
+      end
     end
   end
 end

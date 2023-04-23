@@ -8,7 +8,7 @@ RSpec.describe 'Outing Show Page' do
   describe "User Story 4" do
     it "I see the outing's name, location, and date" do
       visit "/outings/#{@outing_1.id}"
-      save_and_open_page
+      
       within "#outing-name" do
         expect(page).to have_content(@outing_1.name)
       end
