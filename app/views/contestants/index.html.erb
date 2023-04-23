@@ -1,0 +1,11 @@
+<h1 id="contestant-header"><%= @bachelorette.name %>'s Contestants</h1>
+
+<body>
+  <section id="contestant-list">
+    <% @contestants.each do |contestant| %>
+        <h3 id="contestant-#{contestant.id}"><%= contestant.name %></h3>
+        <p >Age: <%= contestant.age %></p>
+        <p>Hometown: <%= contestant.hometown %></p>
+    <% end %>
+  </section>
+</body>
